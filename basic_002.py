@@ -24,6 +24,18 @@ for i in sentences:
     #Part of Speech tagging
     tagged = nltk.pos_tag(words)
     print(tagged)
+    
+    #chunking part begins
+    #Generate chunking regular expression which you want to chunk
+    chunkGram = r"""Chunk : {<RB.?>*<VB.?>*<NNP>+<NN>?} """
+    
+    #Making a parser with the Regular Expression
+    chunkParser = nltk.RegexpParser(chunkGram)
+    #Parsing the data using parser
+    chunked = chunkParser.parse(tagged)
+    
+    print(chunked)
+    chunked.draw()
 
 #POS tag list:
 
